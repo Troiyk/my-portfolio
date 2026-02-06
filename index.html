@@ -221,17 +221,9 @@
             }
         }
 
-        /* Constellations */
+        /* Constellation */
         .constellation {
             position: absolute;
-            width: 200px;
-            height: 200px;
-        }
-
-        .constellation-line {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.2);
-            transform-origin: 0 0;
         }
 
         .constellation-star {
@@ -243,48 +235,31 @@
             box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
         }
 
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
         /* Scroll Progress Bar */
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 9999;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,1));
             width: 0%;
-            height: 2px;
-            background: var(--accent);
-            z-index: 10000;
-            transition: width 0.05s linear;
-        }
-
-        /* Fade In Animation - Simple and Smooth */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Smooth Card Entrance */
-        .card-animate {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .card-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            transition: width 0.1s ease;
         }
 
         /* Navigation */
@@ -292,17 +267,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            padding: 1.5rem 0;
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: background 0.3s ease;
         }
 
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -312,147 +286,92 @@
             font-family: 'Syne', sans-serif;
             font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover::after {
-            transform: scaleX(1);
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 400;
             font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::before {
-            content: '▸';
-            position: absolute;
-            left: -15px;
-            opacity: 0;
-            transition: all 0.3s ease;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
-            transform: translateX(8px);
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
-            left: -18px;
         }
 
         /* Hero Section */
-        .hero {
+        #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 100px;
-            position: relative;
+            padding-top: 5rem;
         }
 
         .hero-content {
-            animation: fadeInUp 1s ease-out;
+            max-width: 900px;
         }
 
         .hero-label {
             font-size: 0.85rem;
-            letter-spacing: 0.15em;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-weight: 300;
         }
 
         .hero-title {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 800;
-            line-height: 0.95;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
+            letter-spacing: -2px;
         }
 
-        .hero-title span {
-            display: block;
-            background: linear-gradient(135deg, #ffffff 0%, #666666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
+        .hero-description {
+            font-size: 1.15rem;
             line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 650px;
             margin-bottom: 3rem;
+            font-weight: 300;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 2.5rem;
-            background: var(--text-primary);
-            color: var(--bg-primary);
+            padding: 1.2rem 2.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
             text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         .cta-button:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
 
         .arrow {
+            font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
 
@@ -460,30 +379,14 @@
             transform: translateX(5px);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* About Section */
-        section {
+        #about {
             padding: 8rem 0;
-            position: relative;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
         }
 
         .section-label {
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-secondary);
             margin-bottom: 1rem;
@@ -493,390 +396,419 @@
         .section-title {
             font-family: 'Syne', sans-serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
         }
 
-        .about-content {
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Minecraft Characters Section */
-        .characters-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .character-card {
+        .about-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 2rem;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .character-card::before {
+        .about-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .character-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .character-card:hover::before {
             width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--text-primary), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
-        .character-name {
+        .about-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .card-title {
             font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .character-role {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
 
-        .character-description {
+        .card-description {
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: 0.95rem;
         }
 
-        /* Timeline Section */
-        #skills {
+        /* Journey Section */
+        #journey {
+            padding: 8rem 0;
             background: var(--bg-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #skills::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.03) 0%, transparent 50%);
-            pointer-events: none;
-            animation: timelineGlow 8s ease-in-out infinite;
-        }
-
-        @keyframes timelineGlow {
-            0%, 100% { opacity: 0.3; transform: scale(1) translateX(0); }
-            50% { opacity: 0.6; transform: scale(1.1) translateX(20px); }
         }
 
         .timeline {
-            position: relative;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 4rem auto 0;
-            padding: 2rem 0;
+            position: relative;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 0;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                var(--accent) 10%, 
-                var(--accent) 90%, 
-                transparent 100%);
-            transform: translateX(-50%);
-            animation: timelinePulse 3s ease-in-out infinite;
-        }
-
-        @keyframes timelinePulse {
-            0%, 100% { opacity: 0.5; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-            50% { opacity: 1; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
         }
 
         .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 50%;
-            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
             margin-bottom: 4rem;
-            opacity: 0;
-            animation: fadeInTimeline 0.8s ease forwards;
-        }
-
-        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
-        .timeline-item:nth-child(5) { animation-delay: 1s; }
-        .timeline-item:nth-child(6) { animation-delay: 1.2s; }
-
-        @keyframes fadeInTimeline {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .timeline-right {
-            justify-content: flex-start;
-            padding-left: 50%;
-            padding-right: 0;
-        }
-
-        .timeline-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            width: 85%;
             position: relative;
-            transition: all 0.4s ease;
-            overflow: hidden;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .timeline-content:hover::before {
-            opacity: 1;
-        }
-
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 20px;
-            background: var(--bg-card);
-            border: 2px solid var(--border);
-            transform: translateY(-50%) rotate(45deg);
-            transition: all 0.4s ease;
-        }
-
-        .timeline-left .timeline-content::after {
-            right: -11px;
-        }
-
-        .timeline-right .timeline-content::after {
-            left: -11px;
-        }
-
-        .timeline-content:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .timeline-content:hover::after {
-            border-color: var(--accent);
-            background: var(--bg-primary);
         }
 
         .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 2rem;
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            border: 4px solid var(--bg-secondary);
+            width: 13px;
+            height: 13px;
+            background: var(--text-primary);
+            border: 3px solid var(--bg-secondary);
             border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            animation: timelineDotPulse 2s infinite;
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes timelineDotPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
+        .timeline-content {
+            padding-left: 2rem;
         }
 
-        .timeline-content:hover ~ .timeline-dot {
-            background: var(--bg-primary);
-            border-color: var(--accent);
-            transform: translateX(-50%) scale(1.5);
-        }
-
-        .timeline-date {
+        .timeline-year {
             font-family: 'Syne', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
         }
 
         .timeline-title {
             font-family: 'Syne', sans-serif;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 600;
             margin-bottom: 0.75rem;
-            line-height: 1.3;
         }
 
         .timeline-description {
             color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 0.95rem;
+            line-height: 1.8;
         }
 
-        /* Responsive Timeline */
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-right {
-                justify-content: flex-start;
-                padding-left: 60px;
-                padding-right: 0;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-content::after {
-                display: none;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .timeline-content:hover ~ .timeline-dot {
-                transform: translateX(0) scale(1.5);
-            }
+        /* Skills Section */
+        #skills {
+            padding: 8rem 0;
         }
 
-        /* Screenshots Section */
-        .screenshots-grid {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .screenshot-card {
+        .skill-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            padding: 2rem;
+            transition: all 0.4s ease;
             position: relative;
+            overflow: hidden;
         }
 
-        .screenshot-card:hover {
-            border-color: var(--accent);
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--text-primary), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .skill-card:hover::after {
+            transform: translateX(0);
+        }
+
+        .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .screenshot-placeholder {
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            font-size: 1.2rem;
+        }
+
+        .skill-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level-text {
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            transition: all 0.3s ease;
+            min-width: 80px;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            position: relative;
             overflow: hidden;
         }
 
-        .screenshot-card:hover .screenshot-placeholder {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+            transition: width 1s ease;
         }
 
-        .screenshot-placeholder svg {
-            transition: all 0.3s ease;
-        }
-
-        .screenshot-card:hover .screenshot-placeholder svg {
-            transform: scale(1.1);
-        }
-
-        .screenshot-caption {
-            padding: 1.5rem;
+        .skill-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
+            margin-top: 1rem;
         }
 
-        .screenshot-caption strong {
-            color: var(--text-primary);
-            display: block;
+        /* Why Choose Me Section */
+        #why-choose {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .reason-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--text-primary);
+            transition: width 0.4s ease;
+        }
+
+        .reason-card:hover::before {
+            width: 80%;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .reason-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            opacity: 0.1;
+            margin-bottom: 1rem;
+        }
+
+        .reason-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .reason-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Minecraft Section */
+        #minecraft {
+            padding: 8rem 0;
+        }
+
+        .mc-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .mc-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .mc-stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .mc-stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
+        }
+
+        .mc-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .mc-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mc-project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mc-project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .mc-project-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mc-project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .mc-project-type {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .mc-project-body {
+            padding: 2rem;
+        }
+
+        .mc-project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .mc-project-features {
+            list-style: none;
+        }
+
+        .mc-project-features li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .mc-project-features li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--text-primary);
         }
 
         /* Contact Section */
         #contact {
+            padding: 8rem 0;
             background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
         }
 
         .contact-content {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
         }
@@ -884,22 +816,22 @@
         .contact-title {
             font-family: 'Syne', sans-serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+            letter-spacing: -1px;
         }
 
         .contact-text {
-            font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            font-size: 1.1rem;
             line-height: 1.8;
+            margin-bottom: 3rem;
         }
 
         .social-links {
             display: flex;
-            gap: 1.5rem;
             justify-content: center;
+            gap: 2rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
         }
@@ -914,12 +846,12 @@
             color: var(--text-primary);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
         }
 
         .social-link:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .social-icon {
@@ -931,32 +863,24 @@
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.25rem 3rem;
+            padding: 1.5rem 3rem;
             background: var(--text-primary);
             color: var(--bg-primary);
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
         .email-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .email-button:hover .arrow {
-            transform: translateX(5px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
         }
 
         /* Footer */
         footer {
-            background: var(--bg-primary);
+            padding: 3rem 0;
             border-top: 1px solid var(--border);
-            padding: 3rem 0 2rem;
-            text-align: center;
         }
 
         .footer-content {
@@ -968,16 +892,14 @@
 
         .footer-logo {
             font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
         }
 
         .footer-links {
             display: flex;
+            gap: 2rem;
             align-items: center;
-            gap: 1rem;
         }
 
         .footer-link {
@@ -985,31 +907,14 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.3s ease;
         }
 
         .footer-link:hover {
             color: var(--text-primary);
         }
 
-        .footer-link:hover::after {
-            width: 100%;
-        }
-
         .footer-separator {
             color: var(--border);
-            user-select: none;
         }
 
         .footer-copyright {
@@ -1017,101 +922,519 @@
             font-size: 0.85rem;
         }
 
-        @media (max-width: 640px) {
-            .footer-links {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
 
-            .footer-separator {
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .card-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
                 display: none;
             }
-        }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .about-content {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .skills-grid,
+            .reasons-grid,
+            .mc-stats,
+            .mc-projects {
                 grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .characters-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-                font-size: 0.8rem;
-            }
-
-            .hero {
-                padding-top: 120px;
-            }
-
-            section {
-                padding: 5rem 0;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .nav-content {
-                padding: 1rem 1.5rem;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
             }
 
             .social-links {
                 flex-direction: column;
+                align-items: stretch;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Opening Animation Styles */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
+        }
+
+        .loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Animated grid background for loader */
+        .loader-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px);
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .loader-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .loader-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -2px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: logoAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        /* Glowing effect for logo */
+        .loader-logo::before {
+            content: 'TROIYK';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            filter: blur(20px);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes logoAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Corner brackets animation */
+        .loader-brackets {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .bracket {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .bracket.top-left {
+            top: -20px;
+            left: -20px;
+            border-right: none;
+            border-bottom: none;
+            animation: bracketTL 1s ease forwards;
+        }
+
+        .bracket.top-right {
+            top: -20px;
+            right: -20px;
+            border-left: none;
+            border-bottom: none;
+            animation: bracketTR 1s ease forwards;
+        }
+
+        .bracket.bottom-left {
+            bottom: -20px;
+            left: -20px;
+            border-right: none;
+            border-top: none;
+            animation: bracketBL 1s ease forwards;
+        }
+
+        .bracket.bottom-right {
+            bottom: -20px;
+            right: -20px;
+            border-left: none;
+            border-top: none;
+            animation: bracketBR 1s ease forwards;
+        }
+
+        @keyframes bracketTL {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes bracketTR {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes bracketBL {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes bracketBR {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+        }
+
+        .loader-line {
+            width: 350px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .loader-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,255,255,1), rgba(255,255,255,0.8), transparent);
+            animation: loadingLine 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes loadingLine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .loader-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 2.5rem;
+            opacity: 0;
+            animation: fadeInText 1s ease 0.6s forwards;
+        }
+
+        /* Typing effect */
+        .loader-text::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 0.7;
+            }
+        }
+
+        /* Pixel particles for loader */
+        .loader-pixels {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            pointer-events: none;
+        }
+
+        .loader-pixel {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            animation: pixelFloat 4s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes pixelFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            50% {
+                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+            75% {
+                opacity: 1;
+            }
+        }
+
+        /* Orbiting circles */
+        .loader-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+        }
+
+        .loader-orbit.orbit-2 {
+            width: 400px;
+            height: 400px;
+            animation-duration: 12s;
+            animation-direction: reverse;
+        }
+
+        .loader-orbit.orbit-3 {
+            width: 300px;
+            height: 300px;
+            animation-duration: 10s;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Scanning line effect */
+        .loader-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Hide main content during loading */
+        body.loading {
+            overflow: hidden;
+        }
+
+        body.loading nav,
+        body.loading section,
+        body.loading footer {
+            opacity: 0;
+        }
+
+        nav,
+        section,
+        footer {
+            opacity: 0;
+            animation: fadeInContent 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInContent {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile responsive for loader */
+        @media (max-width: 768px) {
+            .loader-logo {
+                font-size: 3rem;
+            }
+            
+            .loader-line {
+                width: 250px;
+            }
+            
+            .loader-brackets {
+                width: 300px;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
+<body class="loading">
+    <!-- Opening Loader -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-scan"></div>
+        <div class="loader-orbit orbit-1"></div>
+        <div class="loader-orbit orbit-2"></div>
+        <div class="loader-orbit orbit-3"></div>
+        <div class="loader-pixels" id="loaderPixels"></div>
+        <div class="loader-content">
+            <div class="loader-brackets">
+                <div class="bracket top-left"></div>
+                <div class="bracket top-right"></div>
+                <div class="bracket bottom-left"></div>
+                <div class="bracket bottom-right"></div>
+            </div>
+            <div class="loader-logo">TROIYK</div>
+            <div class="loader-line"></div>
+            <div class="loader-text">Initializing Experience</div>
+        </div>
+    </div>
+    <!-- Background Elements -->
     <div class="pixel-bg" id="pixelBg"></div>
     <div class="particles" id="particles"></div>
-    
-    <!-- Night Sky Overlay -->
     <div class="night-sky" id="nightSky"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
 
     <!-- Navigation -->
     <nav>
-        <div class="nav-content">
+        <div class="container">
             <div class="logo">TROIYK</div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Timeline</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#minecraft">Minecraft</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-label">Minecraft Explorer & Server Developer</div>
+            <div class="hero-content fade-in">
+                <div class="hero-label">DEVELOPER & MINECRAFT ENTHUSIAST</div>
                 <h1 class="hero-title">
-                    <span class="glitch-text" data-text="BUILDING">BUILDING</span>
-                    <span class="glitch-text" data-text="EXPLORING">EXPLORING</span>
-                    <span class="glitch-text" data-text="DEVELOPING">DEVELOPING</span>
+                    <span class="glitch-text" data-text="Hey, I'm">Hey, I'm</span><br>
+                    <span class="glitch-text" data-text="Troiyk">Troiyk</span>
                 </h1>
-                <p class="hero-subtitle">
-                    Passionate Minecraft player, explorer, and server developer. I create and manage Minecraft servers, discover new worlds, build epic structures, and bring gaming communities together.
+                <p class="hero-description">
+                    A passionate developer and Minecraft creator who transforms ideas into reality. I build immersive server experiences, craft innovative plugins, and bring communities together through code and creativity.
                 </p>
-                <a href="#about" class="cta-button">
-                    <span>DISCOVER MORE</span>
-                    <span class="arrow">↓</span>
+                <a href="#contact" class="cta-button">
+                    <span>LET'S CONNECT</span>
+                    <span class="arrow">→</span>
                 </a>
             </div>
         </div>
@@ -1120,123 +1443,573 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label">01 / About Me</div>
-                <h2 class="section-title">Minecraft Adventurer</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <p>
-                        Hey! I'm <strong>Troiyk</strong>, a dedicated Minecraft player and server developer who loves exploring every corner of this incredible blocky world. Whether I'm venturing into the deepest caves, conquering the Nether, or building massive structures, I'm always looking for the next adventure.
-                    </p>
-                    <p>
-                        I specialize in <strong>Minecraft server development</strong>, creating and managing servers that bring players together. From setting up optimized server configurations to designing unique gameplay experiences, I focus on building communities where players can thrive. I've spent countless hours perfecting server setups, performance optimization, and creating engaging environments.
-                    </p>
-                    <p>
-                        When I'm not developing servers or mining diamonds, I enjoy collaborating with other players, sharing building tips, and discovering new game mechanics. The Minecraft community has been an amazing part of my journey, and I love bringing people together through well-crafted server experiences!
+            <div class="section-label fade-in">01 / Who I Am</div>
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card card-animate">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                    <h3 class="card-title">Developer</h3>
+                    <p class="card-description">
+                        Creating elegant solutions with clean code. Specialized in backend development, database architecture, and building scalable applications.
                     </p>
                 </div>
-                <div class="characters-grid">
-                    <div class="character-card card-animate">
-                        <h3 class="character-name">Server Architecture</h3>
-                        <div class="character-role">Foundation & Setup</div>
-                        <p class="character-description">
-                            Designing robust server structures with optimal performance, proper world configurations, and scalable setups that can handle growing player communities.
-                        </p>
+                <div class="about-card card-animate">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                    <h3 class="card-title">Minecraft Creator</h3>
+                    <p class="card-description">
+                        Building custom servers, plugins, and game modes. From survival adventures to complex minigames, I craft unique Minecraft experiences.
+                    </p>
+                </div>
+                <div class="about-card card-animate">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h3 class="card-title">Community Builder</h3>
+                    <p class="card-description">
+                        Bringing players together through engaging gameplay and supportive communities. Every server is a chance to create lasting memories.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Languages Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-label fade-in">02 / Technical Skills</div>
+            <h2 class="section-title fade-in">Programming Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 3h18v18H3z"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">Java</h3>
                     </div>
-                    <div class="character-card card-animate">
-                        <h3 class="character-name">Community Building</h3>
-                        <div class="character-role">Player Experience</div>
-                        <p class="character-description">
-                            Creating welcoming environments where players can collaborate, build together, and form lasting friendships through shared adventures.
-                        </p>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
                     </div>
-                    <div class="character-card card-animate">
-                        <h3 class="character-name">Performance Tuning</h3>
-                        <div class="character-role">Optimization Expert</div>
-                        <p class="character-description">
-                            Fine-tuning server settings, managing resources efficiently, and ensuring smooth gameplay even with multiple players online simultaneously.
-                        </p>
+                    <p class="skill-description">
+                        Primary language for Minecraft plugin development, server-side applications, and backend systems. Expert in OOP and design patterns.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="4 17 10 11 4 5"/>
+                                <line x1="12" y1="19" x2="20" y2="19"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">Python</h3>
                     </div>
-                    <div class="character-card card-animate">
-                        <h3 class="character-name">World Management</h3>
-                        <div class="character-role">Environment Design</div>
-                        <p class="character-description">
-                            Crafting unique server worlds with custom spawns, protected zones, and carefully planned areas that enhance the player experience.
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Automation scripts, data processing, and backend services. Proficient in frameworks like Django and FastAPI.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">JavaScript</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Frontend development, Discord bots, and web applications. Experience with Node.js and modern frameworks.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">HTML/CSS</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Responsive web design, modern CSS frameworks, and creating polished user interfaces.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">SQL</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Complex queries, database optimization, and data modeling. Experience with MySQL, PostgreSQL, and SQLite.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">C++</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Performance-critical applications and system programming. Understanding of memory management and optimization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Experience Section -->
+    <section id="databases" style="padding: 8rem 0; background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-label fade-in">03 / Data Management</div>
+            <h2 class="section-title fade-in">Database Experience</h2>
+            <div class="skills-grid">
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">MySQL</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Primary database for Minecraft server data, player statistics, and economy systems. Expert in query optimization and indexing.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">MongoDB</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        NoSQL database for flexible data structures. Used for Discord bots, web applications, and rapid prototyping.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 6v6"/>
+                                <path d="M1 12h6m6 0h6"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">PostgreSQL</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Advanced relational database for complex applications. Experience with transactions, triggers, and stored procedures.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                <line x1="9" y1="21" x2="9" y2="9"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">SQLite</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Advanced</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Lightweight database for local storage and prototyping. Perfect for small-scale applications and embedded systems.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">Redis</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        In-memory data store for caching and real-time applications. Used for session management and performance optimization.
+                    </p>
+                </div>
+
+                <div class="skill-card card-animate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-name">Firebase</h3>
+                    </div>
+                    <div class="skill-level">
+                        <span class="skill-level-text">Intermediate</span>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <p class="skill-description">
+                        Real-time database and authentication for web and mobile apps. Experience with Firestore and real-time sync.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section id="why-choose">
+        <div class="container">
+            <div class="section-label fade-in">04 / What Sets Me Apart</div>
+            <h2 class="section-title fade-in">Why Choose Me</h2>
+            <div class="reasons-grid">
+                <div class="reason-card card-animate">
+                    <div class="reason-number">01</div>
+                    <h3 class="reason-title">Proven Expertise</h3>
+                    <p class="reason-description">
+                        Years of hands-on experience in full-stack development and Minecraft server management. I've built systems that serve thousands of players and handle complex operations seamlessly.
+                    </p>
+                </div>
+
+                <div class="reason-card card-animate">
+                    <div class="reason-number">02</div>
+                    <h3 class="reason-title">Clean & Efficient Code</h3>
+                    <p class="reason-description">
+                        I write maintainable, well-documented code that follows industry best practices. Every project is built with scalability and performance in mind.
+                    </p>
+                </div>
+
+                <div class="reason-card card-animate">
+                    <div class="reason-number">03</div>
+                    <h3 class="reason-title">Problem Solver</h3>
+                    <p class="reason-description">
+                        I tackle challenges head-on with creative solutions. Whether it's optimizing database queries or debugging complex systems, I find elegant solutions to tough problems.
+                    </p>
+                </div>
+
+                <div class="reason-card card-animate">
+                    <div class="reason-number">04</div>
+                    <h3 class="reason-title">Community Focused</h3>
+                    <p class="reason-description">
+                        I understand that behind every project is a community. I build with users in mind, creating experiences that are intuitive, engaging, and memorable.
+                    </p>
+                </div>
+
+                <div class="reason-card card-animate">
+                    <div class="reason-number">05</div>
+                    <h3 class="reason-title">Always Learning</h3>
+                    <p class="reason-description">
+                        Technology evolves, and so do I. I stay current with the latest trends, tools, and best practices to deliver cutting-edge solutions.
+                    </p>
+                </div>
+
+                <div class="reason-card card-animate">
+                    <div class="reason-number">06</div>
+                    <h3 class="reason-title">Reliable & Dedicated</h3>
+                    <p class="reason-description">
+                        When I commit to a project, I see it through. You can count on timely communication, consistent updates, and a final product that exceeds expectations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minecraft Development Section -->
+    <section id="minecraft">
+        <div class="container">
+            <div class="section-label fade-in">05 / Minecraft Passion</div>
+            <h2 class="section-title fade-in">Minecraft Developer & Player</h2>
+            
+            <div class="mc-stats">
+                <div class="mc-stat-card card-animate">
+                    <div class="mc-stat-value">15+</div>
+                    <div class="mc-stat-label">Plugins Created</div>
+                </div>
+                <div class="mc-stat-card card-animate">
+                    <div class="mc-stat-value">5000+</div>
+                    <div class="mc-stat-label">Hours Played</div>
+                </div>
+                <div class="mc-stat-card card-animate">
+                    <div class="mc-stat-value">10+</div>
+                    <div class="mc-stat-label">Servers Managed</div>
+                </div>
+                <div class="mc-stat-card card-animate">
+                    <div class="mc-stat-value">70+</div>
+                    <div class="mc-stat-label">Players Served</div>
+                </div>
+            </div>
+
+            <div class="mc-projects">
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Custom Plugin Development</h3>
+                        <div class="mc-project-type">Spigot/Paper</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            Specialized in creating high-performance plugins for Minecraft servers using Spigot and Paper APIs.
                         </p>
+                        <ul class="mc-project-features">
+                            <li>Economy systems with MySQL integration</li>
+                            <li>Custom minigames and arenas</li>
+                            <li>Anti-cheat and moderation tools</li>
+                            <li>Advanced permissions management</li>
+                            <li>Player statistics and leaderboards</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Server Administration</h3>
+                        <div class="mc-project-type">Infrastructure</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            Expert in server setup, optimization, and maintenance for smooth gameplay experiences.
+                        </p>
+                        <ul class="mc-project-features">
+                            <li>Server performance optimization</li>
+                            <li>Database management and backups</li>
+                            <li>Security and DDoS protection</li>
+                            <li>Multi-server network setup (BungeeCord)</li>
+                            <li>Resource pack and world management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Game Mode Design</h3>
+                        <div class="mc-project-type">Creative</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            Designing unique gameplay experiences from survival to competitive minigames.
+                        </p>
+                        <ul class="mc-project-features">
+                            <li>Custom survival enhancements</li>
+                            <li>PvP arenas and tournaments</li>
+                            <li>RPG systems and quests</li>
+                            <li>Skyblock and challenge maps</li>
+                            <li>Creative building competitions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Community Building</h3>
+                        <div class="mc-project-type">Engagement</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            Creating vibrant communities through engaging content and excellent player support.
+                        </p>
+                        <ul class="mc-project-features">
+                            <li>Discord bot integration</li>
+                            <li>Events and tournaments organization</li>
+                            <li>Player feedback and suggestions</li>
+                            <li>Staff training and management</li>
+                            <li>Community guidelines and moderation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Technical Expertise</h3>
+                        <div class="mc-project-type">Skills</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            Deep knowledge of Minecraft's technical aspects and optimization techniques.
+                        </p>
+                        <ul class="mc-project-features">
+                            <li>Spigot/Paper API mastery</li>
+                            <li>Packet manipulation and NMS</li>
+                            <li>WorldEdit and WorldGuard integration</li>
+                            <li>Vault economy API</li>
+                            <li>PlaceholderAPI extensions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mc-project-card card-animate">
+                    <div class="mc-project-header">
+                        <h3 class="mc-project-title">Player Experience</h3>
+                        <div class="mc-project-type">Passion</div>
+                    </div>
+                    <div class="mc-project-body">
+                        <p class="mc-project-description">
+                            As an avid player myself, I understand what makes Minecraft enjoyable and addictive.
+                        </p>
+                        <ul class="mc-project-features">
+                            <li>Expert in survival strategies</li>
+                            <li>Redstone engineering knowledge</li>
+                            <li>Building and design aesthetics</li>
+                            <li>PvP combat techniques</li>
+                            <li>Understanding of game balance</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section id="skills">
+    <!-- Journey Section -->
+    <section id="journey">
         <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-label">02 / My Journey</div>
-                <h2 class="section-title">Timeline</h2>
-            </div>
+            <div class="section-label fade-in">06 / My Journey</div>
+            <h2 class="section-title fade-in">How It All Started</h2>
             <div class="timeline">
-                <div class="timeline-item timeline-left">
+                <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <div class="timeline-date">2020</div>
-                        <h3 class="timeline-title">Started Playing Minecraft</h3>
+                        <div class="timeline-year">2018</div>
+                        <h3 class="timeline-title">First Server Experience</h3>
                         <p class="timeline-description">
-                            My journey began when I first discovered Minecraft. Built my first dirt house and got hooked on the endless possibilities of this blocky world.
+                            Started playing Minecraft and immediately fell in love with multiplayer servers. The community aspect and endless possibilities sparked my curiosity.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <div class="timeline-item timeline-right">
+                <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <div class="timeline-date">2021</div>
-                        <h3 class="timeline-title">First Major Build</h3>
+                        <div class="timeline-year">2019</div>
+                        <h3 class="timeline-title">Learning to Code</h3>
                         <p class="timeline-description">
-                            Completed my first massive project - a medieval castle that took over 2 months to build. This sparked my passion for large-scale constructions.
+                            Discovered Java and started learning programming to create my own plugins. Built my first simple plugin for personal use.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <div class="timeline-item timeline-left">
+                <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <div class="timeline-date">2022</div>
-                        <h3 class="timeline-title">Started Server Development</h3>
+                        <div class="timeline-year">2020</div>
+                        <h3 class="timeline-title">First Server Launch</h3>
                         <p class="timeline-description">
-                            Learned to set up and manage Minecraft servers. Started hosting my first community server with custom plugins and configurations.
+                            Launched my first public server with custom plugins. Learned valuable lessons about server management, community building, and performance optimization.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <div class="timeline-item timeline-right">
+                <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
-                        <h3 class="timeline-title">Advanced Building Techniques</h3>
+                        <div class="timeline-year">2021-2023</div>
+                        <h3 class="timeline-title">Expanding Skills</h3>
                         <p class="timeline-description">
-                            Mastered redstone contraptions, automated farms, and complex building designs. Started helping others with their builds and server setups.
+                            Broadened my expertise to include databases, web development, and other programming languages. Started managing multiple servers and building complex plugin systems.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
                 </div>
-
-                <div class="timeline-item timeline-left">
+                <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <div class="timeline-date">2024</div>
-                        <h3 class="timeline-title">Community Leader</h3>
-                        <p class="timeline-description">
-                            Became an active community member, managing multiple servers and leading collaborative building projects with players worldwide.
-                        </p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-item timeline-right">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025</div>
-                        <h3 class="timeline-title">Minecraft Expert</h3>
+                        <div class="timeline-year">2024-Present</div>
+                        <h3 class="timeline-title">Professional Developer</h3>
                         <p class="timeline-description">
                             Now creating advanced server configurations, custom game modes, and sharing my knowledge through tutorials and community engagement.
                         </p>
@@ -1251,7 +2024,7 @@
     <section id="contact">
         <div class="container">
             <div class="contact-content">
-                <div class="section-label">03 / Get In Touch</div>
+                <div class="section-label">07 / Get In Touch</div>
                 <h2 class="contact-title">Let's Play Together</h2>
                 <p class="contact-text">
                     Want to team up for an adventure or share building tips? Feel free to reach out through any of these platforms.
@@ -1309,6 +2082,40 @@
     </footer>
 
     <script>
+        // Opening Animation
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            const body = document.body;
+            
+            // Generate enhanced loader pixels with random positions
+            const loaderPixels = document.getElementById('loaderPixels');
+            for (let i = 0; i < 50; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'loader-pixel';
+                
+                // Random angle for circular distribution
+                const angle = (Math.PI * 2 * i) / 50;
+                const radius = 100 + Math.random() * 150;
+                const tx = Math.cos(angle) * (Math.random() * 50 - 25);
+                const ty = Math.sin(angle) * (Math.random() * 50 - 25);
+                
+                pixel.style.left = Math.cos(angle) * radius + 300 + 'px';
+                pixel.style.top = Math.sin(angle) * radius + 300 + 'px';
+                pixel.style.setProperty('--tx', tx + 'px');
+                pixel.style.setProperty('--ty', ty + 'px');
+                pixel.style.animationDelay = (i * 0.08) + 's';
+                pixel.style.animationDuration = (3 + Math.random() * 2) + 's';
+                
+                loaderPixels.appendChild(pixel);
+            }
+            
+            // Hide loader after 3 seconds for better effect
+            setTimeout(function() {
+                loader.classList.add('hidden');
+                body.classList.remove('loading');
+            }, 3000);
+        });
+
         // Smooth Scroll Progress Bar
         let ticking = false;
         const scrollProgress = document.getElementById('scrollProgress');
