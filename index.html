@@ -974,366 +974,84 @@
         }
 
         /* Opening Animation Styles */
-        .loader-wrapper {
+        /* Opening Animation Overlay */
+        .opening-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000000;
+            background: #000;
+            z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
             transition: opacity 0.8s ease, visibility 0.8s ease;
-            overflow: hidden;
         }
 
-        .loader-wrapper.hidden {
+        .opening-overlay.hidden {
             opacity: 0;
             visibility: hidden;
         }
 
-        /* Animated grid background for loader */
-        .loader-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 150%;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px),
-                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px);
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        .loader-content {
+        .opening-content {
             text-align: center;
             position: relative;
-            z-index: 2;
         }
 
-        .loader-logo {
+        .opening-logo {
             font-family: 'Syne', sans-serif;
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -2px;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: logoAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            position: relative;
-        }
-
-        /* Glowing effect for logo */
-        .loader-logo::before {
-            content: 'TROIYK';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            filter: blur(20px);
-            animation: glowPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes logoAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.4;
-            }
-        }
-
-        /* Corner brackets animation */
-        .loader-brackets {
-            position: absolute;
-            width: 400px;
-            height: 200px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .bracket {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .bracket.top-left {
-            top: -20px;
-            left: -20px;
-            border-right: none;
-            border-bottom: none;
-            animation: bracketTL 1s ease forwards;
-        }
-
-        .bracket.top-right {
-            top: -20px;
-            right: -20px;
-            border-left: none;
-            border-bottom: none;
-            animation: bracketTR 1s ease forwards;
-        }
-
-        .bracket.bottom-left {
-            bottom: -20px;
-            left: -20px;
-            border-right: none;
-            border-top: none;
-            animation: bracketBL 1s ease forwards;
-        }
-
-        .bracket.bottom-right {
-            bottom: -20px;
-            right: -20px;
-            border-left: none;
-            border-top: none;
-            animation: bracketBR 1s ease forwards;
-        }
-
-        @keyframes bracketTL {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 0;
-            }
-            to {
-                width: 40px;
-                height: 40px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes bracketTR {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 0;
-            }
-            to {
-                width: 40px;
-                height: 40px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes bracketBL {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 0;
-            }
-            to {
-                width: 40px;
-                height: 40px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes bracketBR {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 0;
-            }
-            to {
-                width: 40px;
-                height: 40px;
-                opacity: 1;
-            }
-        }
-
-        .loader-line {
-            width: 350px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.05);
+            letter-spacing: 0.1em;
+            color: #fff;
             position: relative;
             overflow: hidden;
-            margin: 0 auto;
-            border-radius: 2px;
         }
 
-        .loader-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), rgba(255,255,255,1), rgba(255,255,255,0.8), transparent);
-            animation: loadingLine 1.5s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes loadingLine {
-            0% {
-                left: -50%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        .loader-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-top: 2.5rem;
+        .opening-logo span {
+            display: inline-block;
             opacity: 0;
-            animation: fadeInText 1s ease 0.6s forwards;
+            transform: translateY(100px);
+            animation: revealLetter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        /* Typing effect */
-        .loader-text::after {
-            content: '|';
-            animation: blink 1s step-end infinite;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            0%, 50% {
-                opacity: 1;
-            }
-            51%, 100% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeInText {
+        @keyframes revealLetter {
             to {
-                opacity: 0.7;
-            }
-        }
-
-        /* Pixel particles for loader */
-        .loader-pixels {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            pointer-events: none;
-        }
-
-        .loader-pixel {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.15);
-            animation: pixelFloat 4s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        @keyframes pixelFloat {
-            0%, 100% {
-                transform: translate(0, 0) scale(0.5) rotate(0deg);
-                opacity: 0;
-            }
-            25% {
                 opacity: 1;
-            }
-            50% {
-                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
-                opacity: 1;
-            }
-            75% {
-                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Orbiting circles */
-        .loader-orbit {
+        .opening-line {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            animation: rotate 15s linear infinite;
-        }
-
-        .loader-orbit.orbit-2 {
-            width: 400px;
-            height: 400px;
-            animation-duration: 12s;
-            animation-direction: reverse;
-        }
-
-        .loader-orbit.orbit-3 {
-            width: 300px;
-            height: 300px;
-            animation-duration: 10s;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        /* Scanning line effect */
-        .loader-scan {
-            position: absolute;
-            top: 0;
+            bottom: -20px;
             left: 0;
-            width: 100%;
+            width: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: scan 3s linear infinite;
+            background: #fff;
+            animation: expandLine 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
         }
 
-        @keyframes scan {
-            0% {
-                top: 0;
-                opacity: 0;
+        @keyframes expandLine {
+            to {
+                width: 100%;
             }
-            10% {
+        }
+
+        .opening-tagline {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 1.4s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
                 opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
+                transform: translateY(0);
             }
         }
 
@@ -1361,40 +1079,23 @@
             }
         }
 
-        /* Mobile responsive for loader */
+        /* Mobile responsive */
         @media (max-width: 768px) {
-            .loader-logo {
+            .opening-logo {
                 font-size: 3rem;
-            }
-            
-            .loader-line {
-                width: 250px;
-            }
-            
-            .loader-brackets {
-                width: 300px;
             }
         }
     </style>
 </head>
 <body class="loading">
-    <!-- Opening Loader -->
-    <div class="loader-wrapper" id="loader">
-        <div class="loader-scan"></div>
-        <div class="loader-orbit orbit-1"></div>
-        <div class="loader-orbit orbit-2"></div>
-        <div class="loader-orbit orbit-3"></div>
-        <div class="loader-pixels" id="loaderPixels"></div>
-        <div class="loader-content">
-            <div class="loader-brackets">
-                <div class="bracket top-left"></div>
-                <div class="bracket top-right"></div>
-                <div class="bracket bottom-left"></div>
-                <div class="bracket bottom-right"></div>
+    <!-- Opening Animation -->
+    <div class="opening-overlay">
+        <div class="opening-content">
+            <div class="opening-logo">
+                <span style="animation-delay: 0s">T</span><span style="animation-delay: 0.1s">R</span><span style="animation-delay: 0.2s">O</span><span style="animation-delay: 0.3s">I</span><span style="animation-delay: 0.4s">Y</span><span style="animation-delay: 0.5s">K</span>
+                <div class="opening-line"></div>
             </div>
-            <div class="loader-logo">TROIYK</div>
-            <div class="loader-line"></div>
-            <div class="loader-text">Initializing Experience</div>
+            <div class="opening-tagline" style="transform: translateY(20px);">DIGITAL | PIXEL CRAFTSMAN</div>
         </div>
     </div>
     <!-- Background Elements -->
@@ -2084,36 +1785,14 @@
     <script>
         // Opening Animation
         window.addEventListener('load', function() {
-            const loader = document.getElementById('loader');
+            const overlay = document.querySelector('.opening-overlay');
             const body = document.body;
             
-            // Generate enhanced loader pixels with random positions
-            const loaderPixels = document.getElementById('loaderPixels');
-            for (let i = 0; i < 50; i++) {
-                const pixel = document.createElement('div');
-                pixel.className = 'loader-pixel';
-                
-                // Random angle for circular distribution
-                const angle = (Math.PI * 2 * i) / 50;
-                const radius = 100 + Math.random() * 150;
-                const tx = Math.cos(angle) * (Math.random() * 50 - 25);
-                const ty = Math.sin(angle) * (Math.random() * 50 - 25);
-                
-                pixel.style.left = Math.cos(angle) * radius + 300 + 'px';
-                pixel.style.top = Math.sin(angle) * radius + 300 + 'px';
-                pixel.style.setProperty('--tx', tx + 'px');
-                pixel.style.setProperty('--ty', ty + 'px');
-                pixel.style.animationDelay = (i * 0.08) + 's';
-                pixel.style.animationDuration = (3 + Math.random() * 2) + 's';
-                
-                loaderPixels.appendChild(pixel);
-            }
-            
-            // Hide loader after 3 seconds for better effect
+            // Hide overlay after animation completes
             setTimeout(function() {
-                loader.classList.add('hidden');
+                overlay.classList.add('hidden');
                 body.classList.remove('loading');
-            }, 3000);
+            }, 2200); // Wait for all animations to complete
         });
 
         // Smooth Scroll Progress Bar
